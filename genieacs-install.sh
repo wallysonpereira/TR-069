@@ -14,14 +14,16 @@ apt-get update
 
 
 echo "[+] Installing depenbdancies and MongoDB"
-apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common sudo -y
-curl -fsSL https://pgp.mongodb.com/server-7.0.asc | \
-   sudo gpg --batch --yes -o /usr/share/keyrings/mongodb-server-7.0.gpg \
-   --dearmor
-echo "deb [ signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg ] http://repo.mongodb.org/apt/debian bullseye/mongodb-org/7.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+apt install dirmngr gnupg apt-transport-https ca-certificates software-properties-common sudo curl -y
+curl -fsSL https://pgp.mongodb.com/server-7.0.asc | sudo gpg -o /usr/share/keyrings/mongodb-server-7.0.gpg --dearmor
+echo "deb [signed-by=/usr/share/keyrings/mongodb-server-7.0.gpg] http://repo.mongodb.org/apt/debian bullseye/mongodb-org/7.0 main" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
+echo "deb http://security.ubuntu.com/ubuntu focal-security main" | sudo tee /etc/apt/sources.list.d/focal-security.list
 apt-get update
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32
+export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 wget http://ftp.br.debian.org/debian/pool/main/o/openssl/libssl1.1_1.1.1w-0+deb11u1_amd64.deb
-dpkg -i ./libssl1.1_1.1.1w-0+deb11u1_amd64.deb
+sudo dpkg -i ./libssl1.1_1.1.1w-0+deb11u1_amd64.deb
 apt-get update
 
 echo "[+] Installing MongoDB"
