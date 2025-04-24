@@ -1,7 +1,7 @@
 # TR-069
 1. Baixe script para instalação. (Download script for installation.)
    
-wget https://github.com/wallysonpereira/TR-069/blob/main/genieacs-install.sh
+wget https://raw.githubusercontent.com/wallysonpereira/TR-069/refs/heads/main/genieacs-install.sh
 
 3. Altere as permissões do arquivo. (Change the file permissions.)
    
